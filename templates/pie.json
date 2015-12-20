@@ -1,0 +1,6 @@
+{
+	"sheetUrl": "https://docs.google.com/spreadsheets/d/1A8mOPi0RrAiCWfyGH3MThtyo-wyrA3y8mAOS2TTw8Hc/edit?usp=sharing",
+	"queryString": "SELECT A2:A6",
+	"jsFile": "/templateJs/pie.js",
+	"documentationUrl": "https://developers.google.com/chart/interactive/docs/gallery/piechart"
+}
