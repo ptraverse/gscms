@@ -81,3 +81,18 @@ body {
 .full-width {
   width: 100%;
 }
+
+#graphScript {
+  height: 300px;
+  border:1px solid #999999;
+  font-size: 12px;
+  font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+}
+
+.center {
+  text-align: center;
+}
+
+#sheetUrlLink {
+  cursor: pointer;  
+}

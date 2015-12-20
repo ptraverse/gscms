@@ -1,17 +1,26 @@
 extends layout
 
 block content
-	body(ng-app='aqpApp')
-		.container			
+	body
+		.container
+			input.input-lg.full-width(type="text" id="sheetUrl" placeholder="Enter Publicly Shared Google Sheet URL")
+			div.full-width.center
+				i.fa.fa-table(id="sheetUrlLink")
+			br
+			input.input-lg.full-width(type="text" id="queryString" placeholder="Enter Query String")
+			br
+			br
+			select.input-lg.full-width(name="templateSelect" id="templateSelect" autofocus="true")
+				option(id="default" value="" disabled selected) select template
+				option(id="pie" value="pie" label="pie")
+				option(id="sankey" value="sankey" label="sankey")			
+			div.full-width.center()
+				a(id="documentationUrlLink")
+					i.fa.fa-book		
 			.jumbotron				
-				p
-					input.input-lg.full-width(type="text" id="sheetUrl" placeholder="Enter Publicly Shared Google Sheet URL")
+				p					
+					textarea.input-lg.full-width(rows="50" cols="100" wrap="hard" id="graphScript" placeholder="Write Some Code Here!")
 					br
-					br
-					input.input-lg.full-width(type="text" id="queryString" placeholder="Enter Query String")
-					br
-					br
-					input.input-lg.full-width(type="textarea" id="graphScriptUrl" placeholder="Enter Raw Gist URL to Custom Javascript")
 				p
 					a.btn.btn-lg.btn-success(href='#', role='button', id="getSome") Get Some
 		.container.col-centered
@@ -20,41 +29,48 @@ block content
 block additional_js	
 	script(type="text/javascript" charset="utf-8").
 		$(document).ready( function() {
-			console.log('working');
 
 			$('#getSome').on('click', function() {
-				var sheetUrl = $('#sheetUrl').attr('value');
-				retrieveSheetData(sheetUrl);
+				var graphScriptJs = $('#graphScript').val();
+				//TODO - Write a "cleaning" function to make sure whatever user types is safe
+				eval(graphScriptJs);
+				var sheetUrl = $('#sheetUrl').val();
+				var queryString = $('#queryString').val();				
+				retrieveSheetData(sheetUrl, queryString);
+				$('html, body').animate({ scrollTop: $('#chart_div').offset().top }, 'slow');
 			});
 
-			var retrieveSheetData = function(sheetUrl) {
-				var queryString = encodeURIComponent('SELECT *');
-				var query = new google.visualization.Query(sheetUrl + queryString);
-				query.send(handleSampleDataQueryResponse);
-			};
+			$('#sheetUrlLink').on('click', function() {
+				var sheetUrl = $('#sheetUrl').val();
+				window.open(sheetUrl);
+			});
 
-			var handleSampleDataQueryResponse = function(response) {
-				if (response.isError()) {
-				alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-					return;
-				}
-				var data = response.getDataTable();
-				console.log(data);
-
-				var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-				chart.draw(data, {width: 400, height: 240});
-			};
-
-			var initDev = function() {
-				//in dev mode, auto populate with test sheet
-				$('#sheetUrl').attr('value', 'https://docs.google.com/spreadsheets/d/1A8mOPi0RrAiCWfyGH3MThtyo-wyrA3y8mAOS2TTw8Hc/edit?usp=sharing');
-
-				//in dev mode use test querystring
-				$('#queryString').attr('value', 'SELECT A2:A6');
-
-				//in dev mode, auto populate with test script
-				$('#graphScriptUrl').attr('value', '');
-			};
-
-			initDev();
+			$('#templateSelect').on('change', function() {
+				var choice = $(this).val();				
+				var url = ""+choice+".json";
+				$.ajax({	
+					"type": "GET",
+					"url": url
+				}).success(function(data) {
+					var template = data;
+					$('#sheetUrl').val(template.sheetUrl);
+					$('#queryString').val(template.queryString);					
+					$('#documentationUrlLink').attr('href',template.documentationUrl);					
+					$('#documentationUrlLink').attr('target','_blank');					
+					var templateJs = template.jsFile;
+					$.ajax({
+						"type": "GET",
+						"url": templateJs
+					}).success(function(jsData) {						
+						$("#graphScript").val(jsData);
+					}).error(function(jsErr) {
+						console.log('jsErr');
+						console.log(jsErr);
+					});
+				}).error(function(err) {
+					console.log("err!");
+					console.log(err);
+				});
+			});
+			
 		});

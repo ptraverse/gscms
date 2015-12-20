@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bowerupdate": "bower update",
-    "start": "sudo ./node_modules/nodemon/bin/nodemon.js ./index.js"
+    "start": "sudo ./node_modules/nodemon/bin/nodemon.js ./index.js",
+    "postinstall": "bower install",
+    "postupdate": "bower update"
   },
   "author": "",
   "license": "ISC",

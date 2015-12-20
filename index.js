@@ -6,8 +6,9 @@ var request = require('request');
 
 var app = express();
 
-app.use(express.static(process.cwd() + '/public'));
 app.use(express.static(process.cwd() + '/bower_components'));
+app.use(express.static(process.cwd() + '/public'));
+app.use(express.static(process.cwd() + '/templates'));
 
 
 //Root
