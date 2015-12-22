@@ -7,9 +7,9 @@ var request = require('request');
 var app = express();
 
 app.use(express.static(process.cwd() + '/bower_components'));
+app.use(express.static(process.cwd() + '/models'));
 app.use(express.static(process.cwd() + '/public'));
 app.use(express.static(process.cwd() + '/templates'));
-
 
 //Root
 app.get('/', function (req, res) {
@@ -17,6 +17,11 @@ app.get('/', function (req, res) {
     res.send(html);
 });
 
+//Path to Save by Hash to MongoDB
+app.post('/create/:hash', function(req, res) {
+	var hash = request.params.hash;
+	res.send("hash is "+hash);
+});
 
 var port = '12345';
 app.listen(port);

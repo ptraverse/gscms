@@ -11,22 +11,26 @@ block content
 			br
 			br
 			select.input-lg.full-width(name="templateSelect" id="templateSelect" autofocus="true")
-				option(id="default" value="" disabled selected) select template
-				option(id="pie" value="pie" label="pie")
-				option(id="sankey" value="sankey" label="sankey")			
+				option(id="default" value="" disabled="disabled" selected="selected") select template
+				option(id="pie" value="pie" label="pie") pie
+				option(id="sankey" value="sankey" label="sankey") sankey
 			div.full-width.center()
 				a(id="documentationUrlLink")
-					i.fa.fa-book		
-			.jumbotron				
-				p					
+					i.fa.fa-book
+			.jumbotron
+				p
 					textarea.input-lg.full-width(rows="50" cols="100" wrap="hard" id="graphScript" placeholder="Write Some Code Here!")
 					br
 				p
 					a.btn.btn-lg.btn-success(href='#', role='button', id="getSome") Get Some
 		.container.col-centered
 			#chart_div.col-centered
+			p.center#postGetSome(style="display:none;")
+				a.btn.btn-lg.btn-success(href='#', role='button', id='saveButton') Save This Setup
+				br
+				input.input-md(name="saveName" id="saveName" disabled="disabled")
 
-block additional_js	
+block additional_js
 	script(type="text/javascript" charset="utf-8").
 		$(document).ready( function() {
 
@@ -35,9 +39,17 @@ block additional_js
 				//TODO - Write a "cleaning" function to make sure whatever user types is safe
 				eval(graphScriptJs);
 				var sheetUrl = $('#sheetUrl').val();
-				var queryString = $('#queryString').val();				
+				var queryString = $('#queryString').val();
 				retrieveSheetData(sheetUrl, queryString);
 				$('html, body').animate({ scrollTop: $('#chart_div').offset().top }, 'slow');
+				$('#postGetSome').css('display','block');
+				$('#postGetSome').focus();
+			});
+
+			$('#saveButton').on('click', function() {
+				var hash = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+				$('#saveName').val(hash);
+				$('html, body').animate({ scrollTop: $('#saveName').offset().top }, 'slow');
 			});
 
 			$('#sheetUrlLink').on('click', function() {
@@ -46,31 +58,32 @@ block additional_js
 			});
 
 			$('#templateSelect').on('change', function() {
-				var choice = $(this).val();				
+				var choice = $(this).val();
 				var url = ""+choice+".json";
-				$.ajax({	
+				$.ajax({
 					"type": "GET",
 					"url": url
 				}).success(function(data) {
 					var template = data;
 					$('#sheetUrl').val(template.sheetUrl);
-					$('#queryString').val(template.queryString);					
-					$('#documentationUrlLink').attr('href',template.documentationUrl);					
-					$('#documentationUrlLink').attr('target','_blank');					
+					$('#queryString').val(template.queryString);
+					$('#documentationUrlLink').attr('href',template.documentationUrl);
+					$('#documentationUrlLink').attr('target','_blank');
 					var templateJs = template.jsFile;
 					$.ajax({
 						"type": "GET",
 						"url": templateJs
-					}).success(function(jsData) {						
+					}).success(function(jsData) {
 						$("#graphScript").val(jsData);
 					}).error(function(jsErr) {
 						console.log('jsErr');
 						console.log(jsErr);
 					});
+					$('#getSome').focus();					
 				}).error(function(err) {
 					console.log("err!");
 					console.log(err);
 				});
 			});
-			
+
 		});
