@@ -1,8 +1,6 @@
 function retrieveSheetData(sheetUrl, queryString) {
-  var queryString = encodeURIComponent(queryString);
-
-  var query = new google.visualization.Query(
-      sheetUrl + queryString);
+  var queryUrl = sheetUrl + '/gviz/tq?&' + queryString;
+  var query = new google.visualization.Query(queryUrl);
   query.send(handleSampleDataQueryResponse);
 }
 

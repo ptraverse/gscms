@@ -3,6 +3,7 @@ extends layout
 block content
 	body
 		.container
+			h1.center#title GoogleSheets-CMS
 			input.input-lg.full-width(type="text" id="sheetUrl" placeholder="Enter Publicly Shared Google Sheet URL")
 			div.full-width.center
 				i.fa.fa-table(id="sheetUrlLink")
@@ -14,6 +15,7 @@ block content
 				option(id="default" value="" disabled="disabled" selected="selected") select template
 				option(id="pie" value="pie" label="pie") pie
 				option(id="sankey" value="sankey" label="sankey") sankey
+				option(id="sankeyWithTooltips" value="sankeyWithTooltips" label="sankeyWithTooltips") sankeyWithTooltips
 			div.full-width.center()
 				a(id="documentationUrlLink")
 					i.fa.fa-book
