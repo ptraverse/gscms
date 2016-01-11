@@ -25,6 +25,8 @@ block content
 					a.btn.btn-lg.btn-success(href='#', role='button', id="getSome") Get Some
 		.container.col-centered
 			#chart_div.col-centered
+			p
+				a.btn.btn-lg.btn-success(href='#', role='button', id="embedButton", style="display:none;") Embed This Graphic
 
 block additional_js	
 	script(type="text/javascript" charset="utf-8").
@@ -38,6 +40,7 @@ block additional_js
 				var queryString = $('#queryString').val();				
 				retrieveSheetData(sheetUrl, queryString);
 				$('html, body').animate({ scrollTop: $('#chart_div').offset().top }, 'slow');
+				showEmbedLink();
 			});
 
 			$('#sheetUrlLink').on('click', function() {
@@ -73,4 +76,8 @@ block additional_js
 				});
 			});
 			
+			var showEmbedLink = function() {
+				$('#embedButton').css('display','block');
+				//TODO - Make a way to let users embed this new graphic
+			};
 		});
