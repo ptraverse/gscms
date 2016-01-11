@@ -1,29 +1,47 @@
 extends layout
 
-block leftBar
-	h3.center Google Sheets CMS
-		form(method='post', action='http://jsfiddle.net/api/post/mootools/1.2/dependencies/more/', target='check')
-			input.input-lg.full-width(type="text" id="sheetUrl" placeholder="Sheet URL")
-			div.full-width.center
-				i.fa.fa-table(id="sheetUrlLink")
-			br
-			input.input-lg.full-width(type="text" id="queryString" placeholder="Range")
-			br
-			br
-			select.input-lg.full-width(name="templateSelect" id="templateSelect" autofocus="true")
-				option(id="default" value="" disabled="disabled" selected="selected") select template
-				option(id="pie" value="pie" label="pie") pie
-				option(id="sankey" value="sankey" label="sankey") sankey
-				option(id="sankeyWithTooltips" value="sankeyWithTooltips" label="sankeyWithTooltips") sankeyWithTooltips			
-			a(id="documentationUrlLink")
-				i.fa.fa-book
-			br
-			br
-			br
-			a.btn.btn-lg.btn-success(href='#', role='button', id="getSome") Generate!
-			br
-			br
-			a.btn.btn-lg.btn-primary(type="submit", id="jsFiddle") jsFiddle
+block content
+	body
+		.container			
+			h1.center#title GoogleSheets-CMS
+			form(method='post', action='http://jsfiddle.net/api/post/mootools/1.2/dependencies/more/', target='check')
+				input.input-lg.full-width(type="text" id="sheetUrl" placeholder="Enter Publicly Shared Google Sheet URL")
+				div.full-width.center
+					i.fa.fa-table(id="sheetUrlLink")
+				br
+				input.input-lg.full-width(type="text" id="queryString" placeholder="Enter Query String")
+				br
+				br
+				select.input-lg.full-width(name="templateSelect" id="templateSelect" autofocus="true")
+					option(id="default" value="" disabled="disabled" selected="selected") select template
+					option(id="pie" value="pie" label="pie") pie
+					option(id="sankey" value="sankey" label="sankey") sankey
+					option(id="sankeyWithTooltips" value="sankeyWithTooltips" label="sankeyWithTooltips") sankeyWithTooltips
+				div.full-width.center()
+					a(id="documentationUrlLink")
+						i.fa.fa-book
+				.jumbotron
+					p
+						textarea(name='html')        				
+					p
+						textarea.input-lg.full-width(rows="50" cols="100" wrap="hard" id="graphScript" placeholder="Write Some Code Here!" name="js")
+						br
+					p
+						a.btn.btn-lg.btn-success(href='#', role='button', id="getSome") Get Some
+
+				input(type="submit")
+					
+		.container.col-centered
+			#chart_div.col-centered
+			p
+				a.btn.btn-lg.btn-success(href='#', role='button', id="embedButton", style="display:none;") Embed This Graphic
+
+			p.center#postGetSome(style="display:none;")
+				a.btn.btn-lg.btn-success(href='#', role='button', id='saveButton') Save This Setup
+				br
+				input.input-md(name="saveName" id="saveName" disabled="disabled")
+
+			
 
 block additional_js
 	script(type="text/javascript" charset="utf-8").
@@ -90,3 +108,5 @@ block additional_js
 				//TODO - Make a way to let users embed this new graphic
 			};
 		});
+		
+

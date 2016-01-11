@@ -96,3 +96,14 @@ body {
 #sheetUrlLink {
   cursor: pointer;  
 }
+
+#win1, #win2, #win4 {
+  min-height: 100px;
+}
+#win3 {
+  min-height: 350px;
+}
+
+.customtextarea {
+  width: 99%;
+}

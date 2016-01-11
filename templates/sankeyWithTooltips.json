@@ -1,0 +1,6 @@
+{
+  "sheetUrl": "https://docs.google.com/spreadsheets/d/1UQrdF5lDecwmpuLWMMy3wzkZGxHGPoNrteu-Xh9AqfQ/edit?usp=sharing",
+  "queryString": "range=A1:C44",
+  "jsFile": "/templateJs/sankeyWithTooltips.js",
+  "documentationUrl": "https://developers.google.com/chart/interactive/docs/gallery/sankey"
+}

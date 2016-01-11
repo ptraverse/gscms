@@ -1,0 +1,37 @@
+html
+  body
+    h2 Load a fiddle based on the POST variables
+    form(method='post', action='http://jsfiddle.net/api/post/mootools/1.2/dependencies/more/', target='check')
+      p
+        input(type='submit')
+        |  - fiddle will be loaded in different browser window/tab.
+      select(name='panel_html')
+        option(value='0') HTML
+      textarea(name='html')
+        p.red It's magic!
+        p
+          a(href='http://doc.jsfiddle.net/api/post.html') Documentation
+      select(name='panel_js')
+        option(value='0') JavaScript
+        option(value='1') CoffeeScript
+        option(value='2') JavaScript 1.7
+      textarea(name='js')
+        | window.addEvent('domready', function() {
+        | $$('p.red').each(function(el) {
+        | el.setStyle('color', '#00ff00');
+        | });
+        | });
+      select(name='panel_css')
+        option(value='0') CSS
+        option(value='1') SCSS
+      textarea(name='css') p {font-family: Helvetica, Arial; }
+      label Title:
+      input(type='text', name='title', value='some title')
+      label Description:
+      textarea(name='description') descr
+      label Resources (comma separated, no spaces):
+      textarea(name='resources') http://abc.it/xyz.js
+      label DTD:
+      input(type='text', name='dtd', value='html 4')
+      label Wrap (l/d/h/b)
+      input(type='text', name='wrap', value='l')

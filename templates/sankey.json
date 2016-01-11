@@ -1,6 +1,6 @@
 {
 	"sheetUrl": "https://docs.google.com/spreadsheets/d/1eERHaDiuMUSiXylr248sf1yIG2i7PXvyAUjEvfmNNhc/edit?usp=sharing",
-	"queryString": "SELECT A3:C46",
+	"queryString": "range=A3:C46",
 	"jsFile": "/templateJs/sankey.js",
 	"documentationUrl": "https://developers.google.com/chart/interactive/docs/gallery/sankey"
 }
