@@ -1,0 +1,6 @@
+{
+	"sheetUrl": "https://docs.google.com/spreadsheets/d/1SgKKIlE5rv_tW804t9yd3aQdCtiQXvVNTDhnAtZEBcQ/edit?usp=sharing",
+	"queryString": "range=A2:C17",
+	"jsFile": "/templateJs/google.js",
+	"documentationUrl": "https://developers.google.com/chart/interactive/docs/gallery/linechart"
+}

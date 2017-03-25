@@ -1,0 +1,6 @@
+{
+	"sheetUrl": "https://docs.google.com/spreadsheets/d/1mOMxXZMHls-UUlyDRGbf6tl5Wc9Ghx2U-2vR2BQOhQQ/edit?usp=sharing",
+	"queryString": "range=A2:C17",
+	"jsFile": "/templateJs/bitcoin.js",
+	"documentationUrl": "https://developers.google.com/chart/interactive/docs/gallery/linechart"
+}
