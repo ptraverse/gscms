@@ -1,0 +1,6 @@
+{
+	"sheetUrl": "https://docs.google.com/spreadsheets/d/1sFoEErHBziDmdtq_NpVWb67sFKnwwiTD7n0JcOSLz7Q/edit?usp=sharing",
+	"queryString": "range=A2:C51",
+	"jsFile": "/templateJs/bigquery.js",
+	"documentationUrl": "https://developers.google.com/chart/interactive/docs/gallery/bubblechart"
+}

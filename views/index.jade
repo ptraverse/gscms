@@ -14,7 +14,10 @@ block leftBar
 				option(id="default" value="" disabled="disabled" selected="selected") select template
 				option(id="pie" value="pie" label="pie") pie
 				option(id="sankey" value="sankey" label="sankey") sankey
-				option(id="sankeyWithTooltips" value="sankeyWithTooltips" label="sankeyWithTooltips") sankeyWithTooltips			
+				option(id="sankeyWithTooltips" value="sankeyWithTooltips" label="sankeyWithTooltips") sankeyWithTooltips
+				option(id="bigquery" value="bigquery" label="bigquery") bigquery			
+				option(id="bitcoin" value="bitcoin" label="bitcoin") bitcoin
+				option(id="google" value="google" label="google") google			
 			a(id="documentationUrlLink")
 				i.fa.fa-book
 			br
@@ -77,14 +80,14 @@ block additional_js
 						console.log('jsErr');
 						console.log(jsErr);
 					});
-					$('#getSome').focus();					
+					$('#getSome').focus();
 				}).error(function(err) {
 					console.log("err!");
 					console.log(err);
 				});
 			});
 
-			
+
 			var showEmbedLink = function() {
 				$('#embedButton').css('display','block');
 				//TODO - Make a way to let users embed this new graphic
