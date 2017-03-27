@@ -46,3 +46,9 @@ Then within that sheet use the "Share" button to get a shareable URL;
 
 Then use that URL in this app. Easiest way is to clone the repo, add a template to the `templates` folder
 using previous entries as examples; Also add new row do `index.jade`'s select dropdown;
+
+## Building a list of stocks
+
+https://gist.github.com/julionc/7476620
+
+`npm run buildstocks` or `yarn run buildstocks`

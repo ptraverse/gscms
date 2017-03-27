@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "sudo node_modules/mocha/bin/mocha ./test ",
-    "start": "sudo mongod -f ./mongod.conf --fork --logpath /dev/null & sudo ./node_modules/mongodb-rest/bin/mongodb-rest ./mongodb-rest.conf & sudo node ./node_modules/mongo-express/app.js & sudo ./node_modules/nodemon/bin/nodemon.js ./index.js",
+    "prestart": "sudo mongod -f ./mongod.conf --fork --logpath /dev/null & sudo ./node_modules/mongodb-rest/bin/mongodb-rest ./mongodb-rest.conf & sudo node ./node_modules/mongo-express/app.js ",
+    "start": "sudo ./node_modules/nodemon/bin/nodemon.js ./index.js",
+    "poststop": "mongo admin --eval 'db.shutdownServer()' > /dev/null & rm -rf /data/db/mongod.lock",
+    "buildstocks": "phantomjs buildstocks.js",
     "postinstall": "bower install",
     "postupdate": "bower update"
   },
